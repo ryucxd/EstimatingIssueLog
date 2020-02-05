@@ -36,7 +36,7 @@ namespace Estimating_Issue_Log
             }
             if (sessionLogin.isEngineer == true)
             {
-                frmMain frm = new frmMain(Convert.ToInt32(sessionLogin.engineerManager));
+                frmMain frm = new frmMain(Convert.ToInt32(sessionLogin.engineerManager),Convert.ToInt32(sessionLogin.ID));
                 frm.Show();
                 this.Hide();
             }
