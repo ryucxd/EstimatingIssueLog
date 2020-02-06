@@ -310,8 +310,18 @@ namespace Estimating_Issue_Log
         {
             int selectedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
 
-            frmAdmin frm = new frmAdmin(selectedID);
-            frm.ShowDialog();
+            if (EngineerManager == -1)
+            {
+                frmAdmin frm = new frmAdmin(selectedID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                frmUser frm = new frmUser(selectedID)
+                    frm.ShowDialog();
+            }
+
+
         }
     }
 }

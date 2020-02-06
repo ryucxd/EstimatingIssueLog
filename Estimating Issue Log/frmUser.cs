@@ -10,14 +10,13 @@ using System.Windows.Forms;
 
 namespace Estimating_Issue_Log
 {
-    public partial class frmAdmin : Form
+    public partial class frmUser : Form
     {
         public int Selected_ID { get; set; }
-        public frmAdmin(int _ID)
+        public frmUser(int _ID)
         {
             InitializeComponent();
             Selected_ID = _ID;
-            
         }
     }
 }
