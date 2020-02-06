@@ -93,7 +93,7 @@ namespace Estimating_Issue_Log
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            frmNewIssue frm = new frmNewIssue();
+            frmNewIssue frm = new frmNewIssue(ID);
             frm.ShowDialog();
         }
     }

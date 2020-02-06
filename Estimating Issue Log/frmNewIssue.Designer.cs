@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtIssue = new System.Windows.Forms.RichTextBox();
             this.lblQuoteNumber = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtQuote = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbEstimating = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLog = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // txtIssue
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(8, 105);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(340, 142);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.txtIssue.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIssue.Location = new System.Drawing.Point(8, 105);
+            this.txtIssue.Name = "txtIssue";
+            this.txtIssue.Size = new System.Drawing.Size(340, 142);
+            this.txtIssue.TabIndex = 0;
+            this.txtIssue.Text = "";
             // 
             // lblQuoteNumber
             // 
@@ -57,13 +57,14 @@
             this.lblQuoteNumber.TabIndex = 1;
             this.lblQuoteNumber.Text = "Qnumber";
             // 
-            // textBox1
+            // txtQuote
             // 
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(124, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 2;
+            this.txtQuote.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuote.Location = new System.Drawing.Point(124, 49);
+            this.txtQuote.Name = "txtQuote";
+            this.txtQuote.Size = new System.Drawing.Size(100, 23);
+            this.txtQuote.TabIndex = 2;
+            this.txtQuote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuote_KeyPress);
             // 
             // label1
             // 
@@ -75,14 +76,14 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Person responsible";
             // 
-            // comboBox1
+            // cmbEstimating
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(124, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.cmbEstimating.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstimating.FormattingEnabled = true;
+            this.cmbEstimating.Location = new System.Drawing.Point(124, 16);
+            this.cmbEstimating.Name = "cmbEstimating";
+            this.cmbEstimating.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstimating.TabIndex = 4;
             // 
             // label2
             // 
@@ -103,6 +104,7 @@
             this.btnLog.TabIndex = 6;
             this.btnLog.Text = "Log Issue";
             this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
             // btnCancel
             // 
@@ -124,11 +126,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLog);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbEstimating);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtQuote);
             this.Controls.Add(this.lblQuoteNumber);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtIssue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -142,11 +144,11 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtIssue;
         private System.Windows.Forms.Label lblQuoteNumber;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtQuote;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbEstimating;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.Button btnCancel;
