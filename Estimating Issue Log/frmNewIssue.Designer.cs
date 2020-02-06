@@ -84,6 +84,7 @@
             this.cmbEstimating.Name = "cmbEstimating";
             this.cmbEstimating.Size = new System.Drawing.Size(121, 21);
             this.cmbEstimating.TabIndex = 4;
+            this.cmbEstimating.SelectedIndexChanged += new System.EventHandler(this.cmbEstimating_SelectedIndexChanged);
             // 
             // label2
             // 

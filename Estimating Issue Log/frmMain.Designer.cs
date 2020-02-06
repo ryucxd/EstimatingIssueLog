@@ -30,7 +30,18 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnNew = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtQuote = new System.Windows.Forms.TextBox();
+            this.dteStart = new System.Windows.Forms.DateTimePicker();
+            this.dteEnd = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbLoggedBy = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CmbPersonResponsible = new System.Windows.Forms.ComboBox();
+            this.chkResolved = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,29 +74,154 @@
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
-            // button2
+            // txtQuote
             // 
-            this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(123, 64);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(402, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "A filter /form/ or just the standard put textboxes everywhere";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtQuote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQuote.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuote.Location = new System.Drawing.Point(753, 65);
+            this.txtQuote.Name = "txtQuote";
+            this.txtQuote.Size = new System.Drawing.Size(131, 23);
+            this.txtQuote.TabIndex = 4;
+            this.txtQuote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuote_KeyPress);
+            // 
+            // dteStart
+            // 
+            this.dteStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dteStart.Location = new System.Drawing.Point(537, 25);
+            this.dteStart.Name = "dteStart";
+            this.dteStart.Size = new System.Drawing.Size(200, 20);
+            this.dteStart.TabIndex = 5;
+            // 
+            // dteEnd
+            // 
+            this.dteEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dteEnd.Location = new System.Drawing.Point(537, 68);
+            this.dteEnd.Name = "dteEnd";
+            this.dteEnd.Size = new System.Drawing.Size(200, 20);
+            this.dteEnd.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(628, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "to";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(602, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 15);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Date logged";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(775, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Quote Number";
+            // 
+            // cmbLoggedBy
+            // 
+            this.cmbLoggedBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbLoggedBy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbLoggedBy.FormattingEnabled = true;
+            this.cmbLoggedBy.Location = new System.Drawing.Point(890, 64);
+            this.cmbLoggedBy.Name = "cmbLoggedBy";
+            this.cmbLoggedBy.Size = new System.Drawing.Size(158, 23);
+            this.cmbLoggedBy.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(939, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 15);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Logged By";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(1076, 46);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(115, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Person Responsible";
+            // 
+            // CmbPersonResponsible
+            // 
+            this.CmbPersonResponsible.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbPersonResponsible.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbPersonResponsible.FormattingEnabled = true;
+            this.CmbPersonResponsible.Location = new System.Drawing.Point(1054, 64);
+            this.CmbPersonResponsible.Name = "CmbPersonResponsible";
+            this.CmbPersonResponsible.Size = new System.Drawing.Size(158, 23);
+            this.CmbPersonResponsible.TabIndex = 12;
+            // 
+            // chkResolved
+            // 
+            this.chkResolved.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkResolved.AutoSize = true;
+            this.chkResolved.Location = new System.Drawing.Point(1239, 66);
+            this.chkResolved.Name = "chkResolved";
+            this.chkResolved.Size = new System.Drawing.Size(15, 14);
+            this.chkResolved.TabIndex = 14;
+            this.chkResolved.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1218, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 15);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Resolved";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 450);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.chkResolved);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.CmbPersonResponsible);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cmbLoggedBy);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dteEnd);
+            this.Controls.Add(this.dteStart);
+            this.Controls.Add(this.txtQuote);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Estimating Issue Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -93,7 +229,18 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtQuote;
+        private System.Windows.Forms.DateTimePicker dteStart;
+        private System.Windows.Forms.DateTimePicker dteEnd;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbLoggedBy;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox CmbPersonResponsible;
+        private System.Windows.Forms.CheckBox chkResolved;
+        private System.Windows.Forms.Label label6;
     }
 }
 

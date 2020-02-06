@@ -21,24 +21,41 @@ namespace Estimating_Issue_Log
             this.Icon = Properties.Resources.ELI_icon;
             EngineerManager = _EngineerManager; //use this to filter out the 
             ID = _ID;
-            string sql = "";
-            if (EngineerManager == -1)
-                sql = "SELECT * FROM dbo.estimating_issue_log;";
-            else
-                sql = "SELECT * FROM dbo.estimating_issue_log WHERE logged_by = " + ID;
-            //fill DGV
+            refreshDGV();
+            format();
+            fillCombo();
+            locking(EngineerManager);
+        }
+
+        private void fillCombo()
+        {
+            //fill the combo logged by based on who has added a entry (saves me having to add everyone
+            string sql = "SELECT DISTINCT b.forename + ' ' + b.surname as [name] FROM dbo.estimating_issue_log a " + //logged by
+                "LEFT JOIN [user_info].[dbo].[user] b ON a.logged_by = b.ID;";
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    DataTable dt = new DataTable();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(dt);
-                    dataGridView1.DataSource = dt;
+                    conn.Open();
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                        cmbLoggedBy.Items.Add(dataReader["name"].ToString());
+                    conn.Close();
                 }
             }
-            format();
-            locking(EngineerManager);
+            //person responsible
+            sql = "SELECT forename + ' ' + surname as [name] FROM dbo.[user] WHERE grouping = 5;";
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionStringUser))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    SqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                        CmbPersonResponsible.Items.Add(dataReader["name"].ToString());
+                    conn.Close();
+                }
+            }
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -76,18 +93,22 @@ namespace Estimating_Issue_Log
             dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[10].HeaderText = "Resolved";
             dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns[11].HeaderText = "Person Responsible";
+            dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
         private void locking(int overRide)
         {
             if (overRide == -1) //if there even are things to lock lmao
             {
                 //unlock ALL the things
-
+                chkResolved.Enabled = true;
+                cmbLoggedBy.Enabled = true;
             }
             else
             {
                 //lock ALL the things
-
+                chkResolved.Enabled = false;
+                cmbLoggedBy.Enabled = false;
             }
         }
 
@@ -95,6 +116,52 @@ namespace Estimating_Issue_Log
         {
             frmNewIssue frm = new frmNewIssue(ID);
             frm.ShowDialog();
+            refreshDGV();
+        }
+
+        private void txtQuote_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void refreshDGV()
+        {
+            //this needs to filter out what the user sees UNLESS they are a manager...  //same thats on the form load but this needs to be callable
+            string sql;
+            if (EngineerManager == -1)
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id ORDER BY ID DESC;";
+            else
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id WHERE logged_by = " + ID + "ORDER BY ID DESC";
+
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    //clear the DGV
+                    dataGridView1.DataSource = null;
+                    this.dataGridView1.Rows.Clear();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            //format the DGV 
+            format();
+        }
+
+        private void applyFilter()
+        {
+
         }
     }
 }

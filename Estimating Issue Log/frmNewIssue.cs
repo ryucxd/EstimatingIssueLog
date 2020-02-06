@@ -14,6 +14,7 @@ namespace Estimating_Issue_Log
     public partial class frmNewIssue : Form
     {
         public int ID { get; set; }
+        public int personResponsible { get; set; }
         public frmNewIssue(int _ID)
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Estimating_Issue_Log
         {
             //collate everything and push to to database
             string sql = "INSERT INTO dbo.[estimating_issue_log]  (date_logged,quote_number,description,logged_by,person_responsible) " +
-                "VALUES (GETDATE()," + txtQuote.Text + ",'" + txtIssue.Text + "'," + ID + ",'" + cmbEstimating.Text + "')";
+                "VALUES (GETDATE()," + txtQuote.Text + ",'" + txtIssue.Text + "'," + ID + ",'" + personResponsible.ToString()+ "')";
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -58,6 +59,8 @@ namespace Estimating_Issue_Log
                     conn.Close();
                 }
             }
+            MessageBox.Show("The issue has now been logged.", "Logged!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void txtQuote_KeyPress(object sender, KeyPressEventArgs e)
@@ -65,6 +68,21 @@ namespace Estimating_Issue_Log
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
 
+        }
+
+        private void cmbEstimating_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //get the ID of the new index
+            string sql = "SELECT ID FROM dbo.[user] WHERE forename + ' ' + surname = '" + cmbEstimating.Text + "'";
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionStringUser))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql,conn))
+                {
+                    conn.Open();
+                    personResponsible = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                }
+            }
         }
     }
 }
