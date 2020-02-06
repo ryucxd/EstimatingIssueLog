@@ -15,6 +15,10 @@ namespace Estimating_Issue_Log
     {
         public int EngineerManager { get; set; }
         public int ID { get; set; }
+        public bool dteStartChanged { get; set; }
+        public bool dteEndChanged { get; set; }
+        public int loggedByID { get; set; }
+        public int personResponsibleID { get; set; }
         public frmMain(int _EngineerManager, int _ID)
         {
             InitializeComponent();
@@ -22,7 +26,6 @@ namespace Estimating_Issue_Log
             EngineerManager = _EngineerManager; //use this to filter out the 
             ID = _ID;
             refreshDGV();
-            format();
             fillCombo();
             locking(EngineerManager);
         }
@@ -127,20 +130,22 @@ namespace Estimating_Issue_Log
 
         private void refreshDGV()
         {
-            //this needs to filter out what the user sees UNLESS they are a manager...  //same thats on the form load but this needs to be callable
+            //this needs to filter out what the user sees UNLESS they are a manager...  
             string sql;
             if (EngineerManager == -1)
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
-                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id ORDER BY ID DESC;";
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id ORDER BY ID DESC;";
             else
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],b.forename + ' ' + b.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
-                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id WHERE logged_by = " + ID + "ORDER BY ID DESC";
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id WHERE logged_by = " + ID + " ORDER BY ID DESC";
 
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
             {
@@ -161,7 +166,152 @@ namespace Estimating_Issue_Log
 
         private void applyFilter()
         {
+            //adjust the sql string
+            string sql = "";
 
+            //add the ending
+            if (EngineerManager == -1)
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id  WHERE ";
+            else
+                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
+                    "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id  WHERE logged_by = " + ID + "  AND   ";
+
+            //now start adding to the string
+            //start with DTE
+            if (dteStartChanged == true)
+            {
+                //if start has changed then
+                sql = sql + " date_logged > '" + dteStart.Value.ToString("yyyy - MM - dd") + "'   AND   ";
+            }
+
+            if (dteStartChanged == true && dteStartChanged == true) //dont add < unless start is also true
+            {
+                sql = sql + " date_logged < '" + dteEnd.Value.ToString("yyyy - MM - dd") + "'   AND   ";
+            }
+
+            if (txtQuote.TextLength > 0)
+            {
+                sql = sql + " quote_number LIKE '%" + txtQuote.Text + "%'   AND   ";
+            }
+
+            if (txtIssue.TextLength > 0)
+            {
+                sql = sql + " [description] LIKE '%" + txtIssue.Text + "%'   AND   ";
+            }
+
+            if (loggedByID > 0)// need the ID of this person
+            {
+                sql = sql + " logged_by = " + loggedByID.ToString() + "   AND   ";
+            }
+
+            if (personResponsibleID > 0) // need the ID of this person
+            {
+                sql = sql + " person_responsible = " + personResponsibleID.ToString() + "   AND   ";
+            }
+
+            if (chkResolved.Checked == true)
+            {
+                sql = sql + " resolved = -1 " + "   AND   ";
+            }
+
+
+
+            sql = sql.Substring(0, sql.Length - 6);
+
+            sql = sql + " ORDER BY ID DESC;";
+
+            //revamp dgv now
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    //clear the DGV
+                    dataGridView1.DataSource = null;
+                    this.dataGridView1.Rows.Clear();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            //format the DGV 
+            format();
+        }
+
+        private void dteStart_ValueChanged(object sender, EventArgs e)
+        {
+            dteStartChanged = true;
+            applyFilter();
+        }
+
+        private void txtQuote_TextChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void cmbLoggedBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //get the ID of what has been selected before apply filter
+            string sql = "SELECT ID FROM dbo.[user] WHERE forename + ' ' + surname = '" + cmbLoggedBy.Text + "'";
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionStringUser))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    loggedByID = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                }
+            }
+                applyFilter();
+        }
+
+        private void CmbPersonResponsible_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //get the ID of who has been selected before apply filter
+            string sql = "SELECT ID FROM dbo.[user] WHERE forename + ' ' + surname = '" + CmbPersonResponsible.Text + "'";
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionStringUser))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    personResponsibleID = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                }
+            }
+            applyFilter();
+        }
+
+        private void chkResolved_CheckedChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void dteEnd_ValueChanged(object sender, EventArgs e)
+        {
+            dteEndChanged = true;
+            applyFilter();
+        }
+
+        private void txtIssue_TextChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+
+            frmAdmin frm = new frmAdmin(selectedID);
+            frm.ShowDialog();
         }
     }
 }

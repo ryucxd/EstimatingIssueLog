@@ -42,6 +42,8 @@
             this.CmbPersonResponsible = new System.Windows.Forms.ComboBox();
             this.chkResolved = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIssue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +64,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(1262, 345);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // btnNew
             // 
@@ -82,30 +85,33 @@
             this.txtQuote.Name = "txtQuote";
             this.txtQuote.Size = new System.Drawing.Size(131, 23);
             this.txtQuote.TabIndex = 4;
+            this.txtQuote.TextChanged += new System.EventHandler(this.txtQuote_TextChanged);
             this.txtQuote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuote_KeyPress);
             // 
             // dteStart
             // 
             this.dteStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dteStart.Location = new System.Drawing.Point(537, 25);
+            this.dteStart.Location = new System.Drawing.Point(337, 24);
             this.dteStart.Name = "dteStart";
             this.dteStart.Size = new System.Drawing.Size(200, 20);
             this.dteStart.TabIndex = 5;
+            this.dteStart.ValueChanged += new System.EventHandler(this.dteStart_ValueChanged);
             // 
             // dteEnd
             // 
             this.dteEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dteEnd.Location = new System.Drawing.Point(537, 68);
+            this.dteEnd.Location = new System.Drawing.Point(337, 67);
             this.dteEnd.Name = "dteEnd";
             this.dteEnd.Size = new System.Drawing.Size(200, 20);
             this.dteEnd.TabIndex = 6;
+            this.dteEnd.ValueChanged += new System.EventHandler(this.dteEnd_ValueChanged);
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(628, 48);
+            this.label1.Location = new System.Drawing.Point(428, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 15);
             this.label1.TabIndex = 7;
@@ -116,7 +122,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(602, 7);
+            this.label2.Location = new System.Drawing.Point(402, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 15);
             this.label2.TabIndex = 8;
@@ -142,6 +148,7 @@
             this.cmbLoggedBy.Name = "cmbLoggedBy";
             this.cmbLoggedBy.Size = new System.Drawing.Size(158, 23);
             this.cmbLoggedBy.TabIndex = 10;
+            this.cmbLoggedBy.SelectedIndexChanged += new System.EventHandler(this.cmbLoggedBy_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -174,6 +181,7 @@
             this.CmbPersonResponsible.Name = "CmbPersonResponsible";
             this.CmbPersonResponsible.Size = new System.Drawing.Size(158, 23);
             this.CmbPersonResponsible.TabIndex = 12;
+            this.CmbPersonResponsible.SelectedIndexChanged += new System.EventHandler(this.CmbPersonResponsible_SelectedIndexChanged);
             // 
             // chkResolved
             // 
@@ -184,6 +192,7 @@
             this.chkResolved.Size = new System.Drawing.Size(15, 14);
             this.chkResolved.TabIndex = 14;
             this.chkResolved.UseVisualStyleBackColor = true;
+            this.chkResolved.CheckedChanged += new System.EventHandler(this.chkResolved_CheckedChanged);
             // 
             // label6
             // 
@@ -196,11 +205,34 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Resolved";
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(594, 47);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(102, 15);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Issue Description";
+            // 
+            // txtIssue
+            // 
+            this.txtIssue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIssue.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIssue.Location = new System.Drawing.Point(543, 65);
+            this.txtIssue.Name = "txtIssue";
+            this.txtIssue.Size = new System.Drawing.Size(204, 23);
+            this.txtIssue.TabIndex = 16;
+            this.txtIssue.TextChanged += new System.EventHandler(this.txtIssue_TextChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 450);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtIssue);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.chkResolved);
             this.Controls.Add(this.label5);
@@ -241,6 +273,8 @@
         private System.Windows.Forms.ComboBox CmbPersonResponsible;
         private System.Windows.Forms.CheckBox chkResolved;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtIssue;
     }
 }
 

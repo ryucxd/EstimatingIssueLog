@@ -44,7 +44,7 @@
             this.txtIssue.Location = new System.Drawing.Point(8, 105);
             this.txtIssue.Name = "txtIssue";
             this.txtIssue.Size = new System.Drawing.Size(340, 142);
-            this.txtIssue.TabIndex = 0;
+            this.txtIssue.TabIndex = 3;
             this.txtIssue.Text = "";
             // 
             // lblQuoteNumber
@@ -83,7 +83,7 @@
             this.cmbEstimating.Location = new System.Drawing.Point(124, 16);
             this.cmbEstimating.Name = "cmbEstimating";
             this.cmbEstimating.Size = new System.Drawing.Size(121, 21);
-            this.cmbEstimating.TabIndex = 4;
+            this.cmbEstimating.TabIndex = 1;
             this.cmbEstimating.SelectedIndexChanged += new System.EventHandler(this.cmbEstimating_SelectedIndexChanged);
             // 
             // label2
@@ -102,7 +102,7 @@
             this.btnLog.Location = new System.Drawing.Point(221, 253);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(75, 23);
-            this.btnLog.TabIndex = 6;
+            this.btnLog.TabIndex = 4;
             this.btnLog.Text = "Log Issue";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
