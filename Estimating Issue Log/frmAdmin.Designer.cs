@@ -42,13 +42,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtCheckedDate = new System.Windows.Forms.TextBox();
             this.txtDiscussedDate = new System.Windows.Forms.TextBox();
-            this.txtDiscussedWith = new System.Windows.Forms.TextBox();
-            this.txtCheckedBy = new System.Windows.Forms.TextBox();
             this.txtLoggedBy = new System.Windows.Forms.TextBox();
-            this.txtPersonResponsible = new System.Windows.Forms.TextBox();
             this.txtLoggedDate = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.txtQuote = new System.Windows.Forms.TextBox();
+            this.cmbCheckedBy = new System.Windows.Forms.ComboBox();
+            this.cmbDiscussedWith = new System.Windows.Forms.ComboBox();
+            this.cmbPersonResponsible = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
@@ -93,7 +93,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(41, 395);
+            this.label8.Location = new System.Drawing.Point(32, 393);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 14);
             this.label8.TabIndex = 38;
@@ -185,53 +185,31 @@
             this.txtDiscussedDate.Size = new System.Drawing.Size(132, 23);
             this.txtDiscussedDate.TabIndex = 29;
             // 
-            // txtDiscussedWith
-            // 
-            this.txtDiscussedWith.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiscussedWith.Location = new System.Drawing.Point(12, 412);
-            this.txtDiscussedWith.Name = "txtDiscussedWith";
-            this.txtDiscussedWith.Size = new System.Drawing.Size(132, 23);
-            this.txtDiscussedWith.TabIndex = 28;
-            // 
-            // txtCheckedBy
-            // 
-            this.txtCheckedBy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckedBy.Location = new System.Drawing.Point(12, 331);
-            this.txtCheckedBy.Name = "txtCheckedBy";
-            this.txtCheckedBy.Size = new System.Drawing.Size(132, 23);
-            this.txtCheckedBy.TabIndex = 27;
-            // 
             // txtLoggedBy
             // 
+            this.txtLoggedBy.Enabled = false;
             this.txtLoggedBy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoggedBy.Location = new System.Drawing.Point(12, 31);
             this.txtLoggedBy.Name = "txtLoggedBy";
             this.txtLoggedBy.Size = new System.Drawing.Size(132, 23);
             this.txtLoggedBy.TabIndex = 26;
             // 
-            // txtPersonResponsible
-            // 
-            this.txtPersonResponsible.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPersonResponsible.Location = new System.Drawing.Point(12, 83);
-            this.txtPersonResponsible.Name = "txtPersonResponsible";
-            this.txtPersonResponsible.Size = new System.Drawing.Size(132, 23);
-            this.txtPersonResponsible.TabIndex = 25;
-            // 
             // txtLoggedDate
             // 
+            this.txtLoggedDate.Enabled = false;
             this.txtLoggedDate.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoggedDate.Location = new System.Drawing.Point(160, 31);
             this.txtLoggedDate.Name = "txtLoggedDate";
             this.txtLoggedDate.Size = new System.Drawing.Size(132, 23);
             this.txtLoggedDate.TabIndex = 24;
             // 
-            // richTextBox1
+            // txtDescription
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 140);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(280, 147);
-            this.richTextBox1.TabIndex = 23;
-            this.richTextBox1.Text = "";
+            this.txtDescription.Location = new System.Drawing.Point(12, 140);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(280, 147);
+            this.txtDescription.TabIndex = 23;
+            this.txtDescription.Text = "";
             // 
             // txtQuote
             // 
@@ -241,11 +219,41 @@
             this.txtQuote.Size = new System.Drawing.Size(132, 23);
             this.txtQuote.TabIndex = 22;
             // 
+            // cmbCheckedBy
+            // 
+            this.cmbCheckedBy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCheckedBy.FormattingEnabled = true;
+            this.cmbCheckedBy.Location = new System.Drawing.Point(12, 331);
+            this.cmbCheckedBy.Name = "cmbCheckedBy";
+            this.cmbCheckedBy.Size = new System.Drawing.Size(132, 23);
+            this.cmbCheckedBy.TabIndex = 43;
+            // 
+            // cmbDiscussedWith
+            // 
+            this.cmbDiscussedWith.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDiscussedWith.FormattingEnabled = true;
+            this.cmbDiscussedWith.Location = new System.Drawing.Point(12, 412);
+            this.cmbDiscussedWith.Name = "cmbDiscussedWith";
+            this.cmbDiscussedWith.Size = new System.Drawing.Size(132, 23);
+            this.cmbDiscussedWith.TabIndex = 44;
+            // 
+            // cmbPersonResponsible
+            // 
+            this.cmbPersonResponsible.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPersonResponsible.FormattingEnabled = true;
+            this.cmbPersonResponsible.Location = new System.Drawing.Point(12, 83);
+            this.cmbPersonResponsible.Name = "cmbPersonResponsible";
+            this.cmbPersonResponsible.Size = new System.Drawing.Size(132, 23);
+            this.cmbPersonResponsible.TabIndex = 45;
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 596);
+            this.ClientSize = new System.Drawing.Size(313, 596);
+            this.Controls.Add(this.cmbPersonResponsible);
+            this.Controls.Add(this.cmbDiscussedWith);
+            this.Controls.Add(this.cmbCheckedBy);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtActionTaken);
             this.Controls.Add(this.label10);
@@ -260,13 +268,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCheckedDate);
             this.Controls.Add(this.txtDiscussedDate);
-            this.Controls.Add(this.txtDiscussedWith);
-            this.Controls.Add(this.txtCheckedBy);
             this.Controls.Add(this.txtLoggedBy);
-            this.Controls.Add(this.txtPersonResponsible);
             this.Controls.Add(this.txtLoggedDate);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtQuote);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAdmin";
             this.Text = "frmAdmin";
             this.ResumeLayout(false);
@@ -290,12 +296,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtCheckedDate;
         private System.Windows.Forms.TextBox txtDiscussedDate;
-        private System.Windows.Forms.TextBox txtDiscussedWith;
-        private System.Windows.Forms.TextBox txtCheckedBy;
         private System.Windows.Forms.TextBox txtLoggedBy;
-        private System.Windows.Forms.TextBox txtPersonResponsible;
         private System.Windows.Forms.TextBox txtLoggedDate;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.TextBox txtQuote;
+        private System.Windows.Forms.ComboBox cmbCheckedBy;
+        private System.Windows.Forms.ComboBox cmbDiscussedWith;
+        private System.Windows.Forms.ComboBox cmbPersonResponsible;
     }
 }

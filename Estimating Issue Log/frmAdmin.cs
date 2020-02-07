@@ -19,6 +19,7 @@ namespace Estimating_Issue_Log
             InitializeComponent();
             Selected_ID = _ID;
             this.Icon = Properties.Resources.ELI_icon;
+            getData();
 
         }
 
@@ -43,12 +44,12 @@ namespace Estimating_Issue_Log
                         txtQuote.Text = sdr["quote_number"].ToString();
                         txtDescription.Text = sdr["description"].ToString();
                         txtLoggedBy.Text = sdr["logged_by"].ToString();
-                        txtCheckedBy.Text = sdr["checked_by"].ToString();
+                        cmbCheckedBy.Items.Add(sdr["checked_by"].ToString());
                         txtCheckedDate.Text = sdr["checked_date"].ToString();
-                        txtDiscussedWith.Text = sdr["discussed_with"].ToString();
+                        cmbDiscussedWith.Items.Add(sdr["discussed_with"].ToString());
                         txtDiscussedDate.Text = sdr["discussed_date"].ToString();
                         txtActionTaken.Text = sdr["action_taken"].ToString();
-                        txtPersonResponsible.Text = sdr["person_responsible"].ToString();
+                        cmbPersonResponsible.Items.Add(sdr["person_responsible"].ToString());
                         this.Text = "Issue ID: " + Selected_ID;
                     }
                     conn.Close();
@@ -56,4 +57,5 @@ namespace Estimating_Issue_Log
             }
 
         }
+    }
 }
