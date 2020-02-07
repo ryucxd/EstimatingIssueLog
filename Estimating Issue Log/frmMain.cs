@@ -271,7 +271,7 @@ namespace Estimating_Issue_Log
                     conn.Close();
                 }
             }
-                applyFilter();
+            applyFilter();
         }
 
         private void CmbPersonResponsible_SelectedIndexChanged(object sender, EventArgs e)
@@ -313,12 +313,12 @@ namespace Estimating_Issue_Log
             if (EngineerManager == -1)
             {
                 frmAdmin frm = new frmAdmin(selectedID);
-                frm.ShowDialog();
+                frm.ShowDialog(); //need a refresh on the DGV here
             }
             else
             {
-                frmUser frm = new frmUser(selectedID)
-                    frm.ShowDialog();
+                frmUser frm = new frmUser(selectedID);
+                frm.ShowDialog();
             }
 
 
