@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtActionTaken = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -49,21 +49,27 @@
             this.cmbCheckedBy = new System.Windows.Forms.ComboBox();
             this.cmbDiscussedWith = new System.Windows.Forms.ComboBox();
             this.cmbPersonResponsible = new System.Windows.Forms.ComboBox();
+            this.dteCheck = new System.Windows.Forms.DateTimePicker();
+            this.dteDiscussed = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.chk_resolved = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnUpdate
             // 
-            this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(108, 565);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 23);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Update ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUpdate.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(107, 635);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(99, 23);
+            this.btnUpdate.TabIndex = 42;
+            this.btnUpdate.Text = "Update ";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txtActionTaken
             // 
-            this.txtActionTaken.Location = new System.Drawing.Point(12, 472);
+            this.txtActionTaken.Location = new System.Drawing.Point(12, 498);
             this.txtActionTaken.Name = "txtActionTaken";
             this.txtActionTaken.Size = new System.Drawing.Size(280, 83);
             this.txtActionTaken.TabIndex = 41;
@@ -83,7 +89,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(113, 455);
+            this.label9.Location = new System.Drawing.Point(113, 477);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 14);
             this.label9.TabIndex = 39;
@@ -93,7 +99,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(32, 393);
+            this.label8.Location = new System.Drawing.Point(22, 390);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 14);
             this.label8.TabIndex = 38;
@@ -103,7 +109,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(179, 395);
+            this.label7.Location = new System.Drawing.Point(179, 392);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 14);
             this.label7.TabIndex = 37;
@@ -113,7 +119,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(45, 314);
+            this.label6.Location = new System.Drawing.Point(35, 302);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 14);
             this.label6.TabIndex = 36;
@@ -123,7 +129,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(186, 314);
+            this.label5.Location = new System.Drawing.Point(186, 302);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 14);
             this.label5.TabIndex = 35;
@@ -172,17 +178,17 @@
             // txtCheckedDate
             // 
             this.txtCheckedDate.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckedDate.Location = new System.Drawing.Point(160, 331);
+            this.txtCheckedDate.Location = new System.Drawing.Point(135, 319);
             this.txtCheckedDate.Name = "txtCheckedDate";
-            this.txtCheckedDate.Size = new System.Drawing.Size(132, 23);
+            this.txtCheckedDate.Size = new System.Drawing.Size(157, 23);
             this.txtCheckedDate.TabIndex = 30;
             // 
             // txtDiscussedDate
             // 
             this.txtDiscussedDate.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiscussedDate.Location = new System.Drawing.Point(160, 412);
+            this.txtDiscussedDate.Location = new System.Drawing.Point(135, 409);
             this.txtDiscussedDate.Name = "txtDiscussedDate";
-            this.txtDiscussedDate.Size = new System.Drawing.Size(132, 23);
+            this.txtDiscussedDate.Size = new System.Drawing.Size(157, 23);
             this.txtDiscussedDate.TabIndex = 29;
             // 
             // txtLoggedBy
@@ -218,23 +224,24 @@
             this.txtQuote.Name = "txtQuote";
             this.txtQuote.Size = new System.Drawing.Size(132, 23);
             this.txtQuote.TabIndex = 22;
+            this.txtQuote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuote_KeyPress);
             // 
             // cmbCheckedBy
             // 
             this.cmbCheckedBy.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCheckedBy.FormattingEnabled = true;
-            this.cmbCheckedBy.Location = new System.Drawing.Point(12, 331);
+            this.cmbCheckedBy.Location = new System.Drawing.Point(12, 319);
             this.cmbCheckedBy.Name = "cmbCheckedBy";
-            this.cmbCheckedBy.Size = new System.Drawing.Size(132, 23);
+            this.cmbCheckedBy.Size = new System.Drawing.Size(112, 23);
             this.cmbCheckedBy.TabIndex = 43;
             // 
             // cmbDiscussedWith
             // 
             this.cmbDiscussedWith.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDiscussedWith.FormattingEnabled = true;
-            this.cmbDiscussedWith.Location = new System.Drawing.Point(12, 412);
+            this.cmbDiscussedWith.Location = new System.Drawing.Point(12, 409);
             this.cmbDiscussedWith.Name = "cmbDiscussedWith";
-            this.cmbDiscussedWith.Size = new System.Drawing.Size(132, 23);
+            this.cmbDiscussedWith.Size = new System.Drawing.Size(112, 23);
             this.cmbDiscussedWith.TabIndex = 44;
             // 
             // cmbPersonResponsible
@@ -246,15 +253,66 @@
             this.cmbPersonResponsible.Size = new System.Drawing.Size(132, 23);
             this.cmbPersonResponsible.TabIndex = 45;
             // 
+            // dteCheck
+            // 
+            this.dteCheck.Location = new System.Drawing.Point(160, 354);
+            this.dteCheck.Name = "dteCheck";
+            this.dteCheck.Size = new System.Drawing.Size(132, 20);
+            this.dteCheck.TabIndex = 46;
+            this.dteCheck.ValueChanged += new System.EventHandler(this.dteCheck_ValueChanged);
+            // 
+            // dteDiscussed
+            // 
+            this.dteDiscussed.Location = new System.Drawing.Point(160, 444);
+            this.dteDiscussed.Name = "dteDiscussed";
+            this.dteDiscussed.Size = new System.Drawing.Size(132, 20);
+            this.dteDiscussed.TabIndex = 47;
+            this.dteDiscussed.ValueChanged += new System.EventHandler(this.dteDiscussed_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(26, 447);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(128, 14);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Select Discussed Date";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(37, 357);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(117, 14);
+            this.label12.TabIndex = 49;
+            this.label12.Text = "Select Checked Date";
+            // 
+            // chk_resolved
+            // 
+            this.chk_resolved.AutoSize = true;
+            this.chk_resolved.Location = new System.Drawing.Point(89, 601);
+            this.chk_resolved.Name = "chk_resolved";
+            this.chk_resolved.Size = new System.Drawing.Size(134, 17);
+            this.chk_resolved.TabIndex = 50;
+            this.chk_resolved.Text = "Mark issue as resolved";
+            this.chk_resolved.UseVisualStyleBackColor = true;
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 596);
+            this.ClientSize = new System.Drawing.Size(313, 670);
+            this.Controls.Add(this.chk_resolved);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.dteDiscussed);
+            this.Controls.Add(this.dteCheck);
             this.Controls.Add(this.cmbPersonResponsible);
             this.Controls.Add(this.cmbDiscussedWith);
             this.Controls.Add(this.cmbCheckedBy);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtActionTaken);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -274,6 +332,7 @@
             this.Controls.Add(this.txtQuote);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdmin";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -282,7 +341,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.RichTextBox txtActionTaken;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -303,5 +362,10 @@
         private System.Windows.Forms.ComboBox cmbCheckedBy;
         private System.Windows.Forms.ComboBox cmbDiscussedWith;
         private System.Windows.Forms.ComboBox cmbPersonResponsible;
+        private System.Windows.Forms.DateTimePicker dteCheck;
+        private System.Windows.Forms.DateTimePicker dteDiscussed;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox chk_resolved;
     }
 }
