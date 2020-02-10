@@ -39,7 +39,7 @@ namespace Estimating_Issue_Log
                     SqlDataReader sdr = cmd.ExecuteReader();
                     while (sdr.Read())
                     {
-                        txtActionTaken.Text = sdr["date_logged"].ToString();
+                        txtLoggedDate.Text = sdr["date_logged"].ToString();
                         txtQuote.Text = sdr["quote_number"].ToString();
                         txtDescription.Text = sdr["description"].ToString();
                         txtLoggedBy.Text = sdr["logged_by"].ToString();
