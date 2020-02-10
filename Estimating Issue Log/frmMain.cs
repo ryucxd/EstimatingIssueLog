@@ -341,7 +341,7 @@ namespace Estimating_Issue_Log
             if (EngineerManager == -1)
             {
                 frmAdmin frm = new frmAdmin(selectedID);
-                frm.ShowDialog(); //need a refresh on the DGV here
+                frm.ShowDialog(); 
             }
             else
             {
