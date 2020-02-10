@@ -132,7 +132,6 @@
             this.Controls.Add(this.txtQuote);
             this.Controls.Add(this.lblQuoteNumber);
             this.Controls.Add(this.txtIssue);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmNewIssue";
