@@ -44,6 +44,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtIssue = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,11 +228,23 @@
             this.txtIssue.TabIndex = 16;
             this.txtIssue.TextChanged += new System.EventHandler(this.txtIssue_TextChanged);
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(93, 65);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(90, 23);
+            this.btnClear.TabIndex = 18;
+            this.btnClear.Text = "Reset Search";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 450);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtIssue);
             this.Controls.Add(this.label6);
@@ -277,6 +290,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtIssue;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

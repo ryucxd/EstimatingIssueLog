@@ -350,5 +350,23 @@ namespace Estimating_Issue_Log
             }
             refreshDGV();
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            //make them blank
+            txtIssue.Text = "";
+            txtQuote.Text = "";
+            cmbLoggedBy.Text = "";
+            CmbPersonResponsible.Text = "";
+            chkResolved.Checked = false;
+            dteStart.Value = DateTime.Now;
+            dteEnd.Value = DateTime.Now;
+            //set the "is changed variables" back to null
+            dteStartChanged = false;
+            dteEndChanged = false;
+            loggedByID = 0;
+            personResponsibleID = 0;
+            applyFilter();
+        }
     }
 }
