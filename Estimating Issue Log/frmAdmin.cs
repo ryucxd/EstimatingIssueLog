@@ -26,7 +26,7 @@ namespace Estimating_Issue_Log
         private void getData()
         {
             string sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
-                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "[discussed_date],[action_taken],[resolved],c.forename + ' ' + c.surname as person_responsible, a.[title] as [title] FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
@@ -52,6 +52,7 @@ namespace Estimating_Issue_Log
                         txtDiscussedDate.Text = sdr["discussed_date"].ToString();
                         txtActionTaken.Text = sdr["action_taken"].ToString();
                         personResponsible = (sdr["person_responsible"].ToString());
+                        txtTitle.Text = (sdr["title"].ToString());
                         this.Text = "Issue ID: " + Selected_ID;
                     }
                     conn.Close();

@@ -60,7 +60,7 @@ namespace Estimating_Issue_Log
         }
         private void button1_Click(object sender, EventArgs e)
         {   // update button
-            string sql = "UPDATE dbo.estimating_issue_log SET [description] = '" + txtDescription.Text + "' WHERE ID = " + Selected_ID;
+            string sql = "UPDATE dbo.estimating_issue_log SET [description] = '" + txtDescription.Text + "',title = '" + txtTitle.Text + "' WHERE ID = " + Selected_ID;
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))

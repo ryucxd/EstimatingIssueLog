@@ -78,26 +78,28 @@ namespace Estimating_Issue_Log
             dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns[1].HeaderText = "Date Logged";
             dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[2].HeaderText = "Quote Number";
+            dataGridView1.Columns[2].HeaderText = "Title";
             dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[3].HeaderText = "Issue";
-            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[4].HeaderText = "Logged by";
-            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[5].HeaderText = "Checked by";
+            dataGridView1.Columns[3].HeaderText = "Quote Number";
+            dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns[4].HeaderText = "Issue";
+            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[5].HeaderText = "Logged by";
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[6].HeaderText = "Checked date";
+            dataGridView1.Columns[6].HeaderText = "Checked by";
             dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[7].HeaderText = "Discussed with";
+            dataGridView1.Columns[7].HeaderText = "Checked date";
             dataGridView1.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[8].HeaderText = "Discussed Date";
+            dataGridView1.Columns[8].HeaderText = "Discussed with";
             dataGridView1.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[9].HeaderText = "Action description";
-            dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[10].HeaderText = "Resolved";
-            dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns[11].HeaderText = "Person Responsible";
+            dataGridView1.Columns[9].HeaderText = "Discussed Date";
+            dataGridView1.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns[10].HeaderText = "Action description";
+            dataGridView1.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[11].HeaderText = "Resolved";
             dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns[12].HeaderText = "Person Responsible";
+            dataGridView1.Columns[12].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             //time to shut up and colour up
 
@@ -143,14 +145,14 @@ namespace Estimating_Issue_Log
             //this needs to filter out what the user sees UNLESS they are a manager...  
             string sql;
             if (EngineerManager == -1)
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
                     "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id ORDER BY ID DESC;";
             else
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],b.forename + ' ' + b.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],b.forename + ' ' + b.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
@@ -181,15 +183,15 @@ namespace Estimating_Issue_Log
 
             //add the ending
             if (EngineerManager == -1)
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
-                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible,a.title FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
                     "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id  WHERE ";
             else
-                sql = "SELECT a.[ID],[date_logged],[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
-                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
+                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible,a.title FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
@@ -206,6 +208,11 @@ namespace Estimating_Issue_Log
             if (dteStartChanged == true && dteStartChanged == true) //dont add < unless start is also true
             {
                 sql = sql + " date_logged < '" + dteEnd.Value.ToString("yyyy - MM - dd") + "'   AND   ";
+            }
+
+            if (txtTitle.TextLength > 0)
+            {
+                sql = sql + " title LIKE '%" + txtTitle.Text + "%'   AND   ";
             }
 
             if (txtQuote.TextLength > 0)
@@ -315,6 +322,10 @@ namespace Estimating_Issue_Log
         {
             applyFilter();
         }
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -368,5 +379,7 @@ namespace Estimating_Issue_Log
             personResponsibleID = 0;
             applyFilter();
         }
+
+
     }
 }

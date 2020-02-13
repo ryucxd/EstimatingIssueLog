@@ -45,6 +45,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtIssue = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTitle = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@
             // dteStart
             // 
             this.dteStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dteStart.Location = new System.Drawing.Point(337, 24);
+            this.dteStart.Location = new System.Drawing.Point(189, 23);
             this.dteStart.Name = "dteStart";
             this.dteStart.Size = new System.Drawing.Size(200, 20);
             this.dteStart.TabIndex = 5;
@@ -102,7 +104,7 @@
             // dteEnd
             // 
             this.dteEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dteEnd.Location = new System.Drawing.Point(337, 67);
+            this.dteEnd.Location = new System.Drawing.Point(189, 66);
             this.dteEnd.Name = "dteEnd";
             this.dteEnd.Size = new System.Drawing.Size(200, 20);
             this.dteEnd.TabIndex = 6;
@@ -113,7 +115,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(428, 47);
+            this.label1.Location = new System.Drawing.Point(280, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 15);
             this.label1.TabIndex = 7;
@@ -124,7 +126,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(402, 6);
+            this.label2.Location = new System.Drawing.Point(254, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 15);
             this.label2.TabIndex = 8;
@@ -222,7 +224,7 @@
             // 
             this.txtIssue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIssue.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIssue.Location = new System.Drawing.Point(543, 65);
+            this.txtIssue.Location = new System.Drawing.Point(543, 66);
             this.txtIssue.Name = "txtIssue";
             this.txtIssue.Size = new System.Drawing.Size(204, 23);
             this.txtIssue.TabIndex = 16;
@@ -239,11 +241,34 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(451, 46);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(31, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Title";
+            // 
+            // txtTitle
+            // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitle.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.Location = new System.Drawing.Point(395, 66);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(142, 23);
+            this.txtTitle.TabIndex = 19;
+            this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 450);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtIssue);
@@ -291,6 +316,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtIssue;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtTitle;
     }
 }
 
