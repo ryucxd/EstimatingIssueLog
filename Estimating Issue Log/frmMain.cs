@@ -348,10 +348,10 @@ namespace Estimating_Issue_Log
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int selectedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-
+            string USER = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
             if (EngineerManager == -1)
             {
-                frmAdmin frm = new frmAdmin(selectedID);
+                frmAdmin frm = new frmAdmin(selectedID,USER);
                 frm.ShowDialog(); 
             }
             else
