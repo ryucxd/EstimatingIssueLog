@@ -379,6 +379,8 @@
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtQuote);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdmin";

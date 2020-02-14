@@ -259,17 +259,23 @@ namespace Estimating_Issue_Log
         }
 
         private void btnReport_Click(object sender, EventArgs e)
-        {
+        {//tjhios
+            btnReport.Enabled = false;
             CrystalReport3 rpt = new CrystalReport3();
-            rpt.SetParameterValue("ID", Selected_ID);
-            rpt.SetParameterValue("USER", USER);
+            rpt.SetParameterValue("ID", "ID: " + Selected_ID);
+            rpt.SetParameterValue("USER", "Logged by:" + USER + " - Person Responsible: " + cmbPersonResponsible.Text);
             rpt.SetParameterValue("TITLE", "" + txtTitle.Text);
-            rpt.SetParameterValue("DATE", txtLoggedDate);
-            rpt.SetParameterValue("ISSUE", txtDescription.Text);
+            rpt.SetParameterValue("DATE",   "DATE LOGGED: " + txtLoggedDate.Text);
+            rpt.SetParameterValue("ISSUE", "ISSUE: " + txtDescription.Text + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine +" ACTION TAKEN: " + txtActionTaken.Text); ;
             rpt.SetParameterValue("MEETINGTIME", "Time of meeting: .........................................");
             rpt.SetParameterValue("RESOLVED", "[ ] Resolved?");
+            rpt.SetParameterValue("DISCUSSEDWITH", "Discussed With: " + cmbDiscussedWith.Text);
+            rpt.SetParameterValue("DISCUSSEDWITHDATE", "Discussed Date: " + txtDiscussedDate.Text);
+            rpt.SetParameterValue("CHECKEDBY", "Checked By: " + cmbCheckedBy.Text);
+            rpt.SetParameterValue("CHECKEDBYDATE", "Checked Date: " + txtCheckedDate.Text);
+            rpt.SetParameterValue("QUOTE", "Quote: " + txtQuote.Text);
             rpt.PrintToPrinter(1, false, 0, 0);
-
+            MessageBox.Show("Report has been sent to your default printer!", "REPORT SENT",MessageBoxButtons.OK);
 
             //working code for paint shop
             //    label_test rpt = new label_test();
