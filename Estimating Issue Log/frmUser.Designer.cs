@@ -51,6 +51,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.btnEvidence = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtQuote
@@ -245,7 +246,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(108, 606);
+            this.button1.Location = new System.Drawing.Point(186, 605);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 23);
             this.button1.TabIndex = 21;
@@ -271,11 +272,23 @@
             this.txtTitle.Size = new System.Drawing.Size(156, 23);
             this.txtTitle.TabIndex = 53;
             // 
+            // btnEvidence
+            // 
+            this.btnEvidence.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEvidence.Location = new System.Drawing.Point(13, 605);
+            this.btnEvidence.Name = "btnEvidence";
+            this.btnEvidence.Size = new System.Drawing.Size(99, 23);
+            this.btnEvidence.TabIndex = 55;
+            this.btnEvidence.Text = "Open Folder";
+            this.btnEvidence.UseVisualStyleBackColor = true;
+            this.btnEvidence.Click += new System.EventHandler(this.btnEvidence_Click);
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(303, 640);
+            this.Controls.Add(this.btnEvidence);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.button1);
@@ -335,5 +348,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Button btnEvidence;
     }
 }

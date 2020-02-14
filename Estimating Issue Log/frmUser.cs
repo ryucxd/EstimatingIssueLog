@@ -47,6 +47,9 @@ namespace Estimating_Issue_Log
                         txtCheckedDate.Text = sdr["checked_date"].ToString();
                         txtDiscussedWith.Text = sdr["discussed_with"].ToString();
                         txtDiscussedDate.Text = sdr["discussed_date"].ToString();
+                        txtDiscussedDate.Text = sdr["discussed_date"].ToString();
+                        txtDiscussedDate.Text = sdr["discussed_date"].ToString();
+                        txtDiscussedDate.Text = sdr["discussed_date"].ToString();
                         txtActionTaken.Text = sdr["action_taken"].ToString();
                         txtPersonResponsible.Text = sdr["person_responsible"].ToString();
                         txtTitle.Text = sdr["title"].ToString();
@@ -73,6 +76,19 @@ namespace Estimating_Issue_Log
                 MessageBox.Show("Issue description has been updated!");
                 this.Close();
             }
+        }
+
+        private void btnEvidence_Click(object sender, EventArgs e)
+        {
+            create_folder();
+            System.Diagnostics.Process.Start(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + Selected_ID); //open the root folder for /this/ project @ /current/ stage
+
+        }
+
+        private void create_folder()
+        {
+            System.IO.Directory.CreateDirectory(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + Selected_ID);
+
         }
     }
 }

@@ -242,5 +242,18 @@ namespace Estimating_Issue_Log
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
         }
+
+        private void btnEvidence_Click(object sender, EventArgs e)
+        {
+            create_folder();
+            System.Diagnostics.Process.Start(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + Selected_ID); //open the root folder for /this/ project @ /current/ stage
+
+        }
+
+        private void create_folder()
+        {
+            System.IO.Directory.CreateDirectory(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + Selected_ID);
+
+        }
     }
 }

@@ -56,12 +56,13 @@
             this.chk_resolved = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.btnEvidence = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(107, 675);
+            this.btnUpdate.Location = new System.Drawing.Point(193, 675);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(99, 23);
             this.btnUpdate.TabIndex = 42;
@@ -319,11 +320,23 @@
             this.txtTitle.Size = new System.Drawing.Size(156, 23);
             this.txtTitle.TabIndex = 51;
             // 
+            // btnEvidence
+            // 
+            this.btnEvidence.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEvidence.Location = new System.Drawing.Point(12, 675);
+            this.btnEvidence.Name = "btnEvidence";
+            this.btnEvidence.Size = new System.Drawing.Size(99, 23);
+            this.btnEvidence.TabIndex = 56;
+            this.btnEvidence.Text = "Open Folder";
+            this.btnEvidence.UseVisualStyleBackColor = true;
+            this.btnEvidence.Click += new System.EventHandler(this.btnEvidence_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 706);
+            this.Controls.Add(this.btnEvidence);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.chk_resolved);
@@ -391,5 +404,6 @@
         private System.Windows.Forms.CheckBox chk_resolved;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Button btnEvidence;
     }
 }
