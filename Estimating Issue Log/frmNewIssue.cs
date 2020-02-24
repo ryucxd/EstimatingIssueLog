@@ -48,6 +48,7 @@ namespace Estimating_Issue_Log
         private void btnLog_Click(object sender, EventArgs e)
         {
             //collate everything and push to to database
+            int log_ID = 0;
             string sql = "INSERT INTO dbo.[estimating_issue_log]  (date_logged,quote_number,description,logged_by,person_responsible,title) " +
                 "VALUES (GETDATE()," + txtQuote.Text + ",'" + txtIssue.Text + "'," + ID + ",'" + personResponsible.ToString()+ "','" + txtTitle.Text + "')";
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
@@ -58,8 +59,17 @@ namespace Estimating_Issue_Log
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
+                using (SqlCommand cmd = new SqlCommand("SELECT MAX(ID) from dbo.[estimating_issue_log]", conn))
+                {
+                    conn.Open();
+                    log_ID = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                }
             }
-            MessageBox.Show("The issue has now been logged.", "Logged!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("The issue has now been logged. Please attach any evidence to the folder that has just been opened.", "Logged!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            System.IO.Directory.CreateDirectory(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + log_ID);
+            System.Diagnostics.Process.Start(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + log_ID); //open the root folder for /this/ project @ /current/ stage
+
             this.Close();
         }
 
