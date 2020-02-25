@@ -25,9 +25,11 @@ namespace Estimating_Issue_Log
             this.Icon = Properties.Resources.ELI_icon;
             EngineerManager = _EngineerManager; //use this to filter out the 
             ID = _ID;
-            refreshDGV();
+            //  refreshDGV();
+            applyFilter();
             fillCombo();
             locking(EngineerManager);
+           // format();
         }
 
         private void fillCombo()
@@ -144,14 +146,14 @@ namespace Estimating_Issue_Log
         {
             //this needs to filter out what the user sees UNLESS they are a manager...  
             string sql;
-            if (EngineerManager == -1)
+            if (EngineerManager == -1) //me gez and chris are @ this level, so we can see everything 
                 sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
                     "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id ORDER BY ID DESC;";
-            else
+            else                                     // while everyone else cannot see anything but their own logs
                 sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],b.forename + ' ' + b.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
@@ -181,7 +183,7 @@ namespace Estimating_Issue_Log
             //adjust the sql string
             string sql = "";
 
-            //add the ending
+
             if (EngineerManager == -1)
                 sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
                     "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
@@ -207,7 +209,7 @@ namespace Estimating_Issue_Log
 
             if (dteStartChanged == true && dteStartChanged == true) //dont add < unless start is also true
             {
-                sql = sql + " date_logged < '" + dteEnd.Value.ToString("yyyy - MM - dd") + "'   AND   ";
+                sql = sql + " date_logged < '" + dteEnd.Value.ToString("yyyy - MM - dd") + "'   AND   "; // this avoids most problems i was having with the searching
             }
 
             if (txtTitle.TextLength > 0)
@@ -233,7 +235,7 @@ namespace Estimating_Issue_Log
             if (personResponsibleID > 0) // need the ID of this person
             {
                 sql = sql + " person_responsible = " + personResponsibleID.ToString() + "   AND   ";
-            }
+            }//i have no idea what im doing anymore ahahahaahaha
 
             if (chkResolved.Checked == true)
             {
@@ -267,7 +269,7 @@ namespace Estimating_Issue_Log
         private void dteStart_ValueChanged(object sender, EventArgs e)
         {
             dteStartChanged = true;
-            applyFilter();
+            applyFilter(); //this too needs to 
         }
 
         private void txtQuote_TextChanged(object sender, EventArgs e)
@@ -329,20 +331,18 @@ namespace Estimating_Issue_Log
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)  //need to paint after the form has been loaded otherwise it does not print :<
             {
                 if (dataGridView1.Rows[i].Cells[10].Value.ToString() == "Resolved")
                 {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightSeaGreen;
                 }
             }
+            applyFilter(); //same with formatting!
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -374,7 +374,7 @@ namespace Estimating_Issue_Log
             dteStart.Value = DateTime.Now;
             dteEnd.Value = DateTime.Now;
             //set the "is changed variables" back to null
-            dteStartChanged = false;
+            dteStartChanged = false; //otherwise it will try to apply filter without any data being in the boxes
             dteEndChanged = false;
             loggedByID = 0;
             personResponsibleID = 0;
