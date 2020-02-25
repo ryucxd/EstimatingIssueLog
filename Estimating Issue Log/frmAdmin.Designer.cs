@@ -57,6 +57,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.btnEvidence = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -295,7 +296,7 @@
             // chk_resolved
             // 
             this.chk_resolved.AutoSize = true;
-            this.chk_resolved.Location = new System.Drawing.Point(89, 641);
+            this.chk_resolved.Location = new System.Drawing.Point(158, 640);
             this.chk_resolved.Name = "chk_resolved";
             this.chk_resolved.Size = new System.Drawing.Size(134, 17);
             this.chk_resolved.TabIndex = 50;
@@ -331,11 +332,23 @@
             this.btnEvidence.UseVisualStyleBackColor = true;
             this.btnEvidence.Click += new System.EventHandler(this.btnEvidence_Click);
             // 
+            // btnReport
+            // 
+            this.btnReport.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Location = new System.Drawing.Point(12, 637);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(99, 23);
+            this.btnReport.TabIndex = 57;
+            this.btnReport.Text = "Print Report";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(313, 706);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnEvidence);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtTitle);
@@ -366,6 +379,8 @@
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtQuote);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdmin";
@@ -405,5 +420,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Button btnEvidence;
+        private System.Windows.Forms.Button btnReport;
     }
 }

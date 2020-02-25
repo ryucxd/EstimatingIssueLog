@@ -14,10 +14,12 @@ namespace Estimating_Issue_Log
     public partial class frmAdmin : Form
     {
         public int Selected_ID { get; set; }
-        public frmAdmin(int _ID)
+        public string USER { get; set; }
+        public frmAdmin(int _ID, string _USER)
         {
             InitializeComponent();
             Selected_ID = _ID;
+            USER = _USER;
             this.Icon = Properties.Resources.ELI_icon;
             getData();
 
@@ -190,23 +192,23 @@ namespace Estimating_Issue_Log
                     sql = sql + "action_taken = '" + ACTION + "' ";
                     needsComma = 1;
                 }
-                 //thats everything EXCEPT for the dates
-                 //date time baby
-                 if (txtCheckedDate.Text.Length >0)
+                //thats everything EXCEPT for the dates
+                //date time baby
+                if (txtCheckedDate.Text.Length > 0)
                 {
                     if (needsComma != 0)
                         sql = sql + ",";
                     sql = sql + "checked_date = '" + txtCheckedDate.Text + "' ";
                     needsComma = 1;
                 }
-                 if (txtDiscussedDate.Text.Length > 0)
+                if (txtDiscussedDate.Text.Length > 0)
                 {
                     if (needsComma != 0)
                         sql = sql + ",";
-                    sql = sql + "discussed_date = '" + txtDiscussedDate.Text +"' ";
+                    sql = sql + "discussed_date = '" + txtDiscussedDate.Text + "' ";
                     needsComma = 1;
                 }
-                 if (chk_resolved.Checked == true)
+                if (chk_resolved.Checked == true)
                 {
                     if (needsComma != 0)
                         sql = sql + ",";
@@ -254,6 +256,40 @@ namespace Estimating_Issue_Log
         {
             System.IO.Directory.CreateDirectory(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + Selected_ID);
 
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {//tjhios
+            btnReport.Enabled = false;
+            CrystalReport3 rpt = new CrystalReport3();
+            rpt.SetParameterValue("ID", "ID: " + Selected_ID);
+            rpt.SetParameterValue("USER", "Logged by:" + USER + " - Person Responsible: " + cmbPersonResponsible.Text);
+            rpt.SetParameterValue("TITLE", "" + txtTitle.Text);
+            rpt.SetParameterValue("DATE",   "DATE LOGGED: " + txtLoggedDate.Text);
+            rpt.SetParameterValue("ISSUE", "ISSUE: " + txtDescription.Text + Environment.NewLine + Environment.NewLine + Environment.NewLine + Environment.NewLine +" ACTION TAKEN: " + txtActionTaken.Text); ;
+            rpt.SetParameterValue("MEETINGTIME", "Time of meeting: .........................................");
+            rpt.SetParameterValue("RESOLVED", "[ ] Resolved?");
+            rpt.SetParameterValue("DISCUSSEDWITH", "Discussed With: " + cmbDiscussedWith.Text);
+            rpt.SetParameterValue("DISCUSSEDWITHDATE", "Discussed Date: " + txtDiscussedDate.Text);
+            rpt.SetParameterValue("CHECKEDBY", "Checked By: " + cmbCheckedBy.Text);
+            rpt.SetParameterValue("CHECKEDBYDATE", "Checked Date: " + txtCheckedDate.Text);
+            rpt.SetParameterValue("QUOTE", "Quote: " + txtQuote.Text);
+            rpt.PrintToPrinter(1, false, 0, 0);
+            MessageBox.Show("Report has been sent to your default printer!", "REPORT SENT",MessageBoxButtons.OK);
+
+            //working code for paint shop
+            //    label_test rpt = new label_test();
+            //    string RAL = hiddenDGV.Rows[i].Cells[0].Value.ToString();
+            //    string DOOR = hiddenDGV.Rows[i].Cells[1].Value.ToString();
+            //    string FINISH = hiddenDGV.Rows[i].Cells[3].Value.ToString();
+            //    string SUPPLIER = hiddenDGV.Rows[i].Cells[2].Value.ToString();
+            //    rpt.SetParameterValue("RALCOLOUR", RAL);
+            //    rpt.SetParameterValue("SUPPLIER", "Supplier: " + SUPPLIER);
+            //    rpt.SetParameterValue("FINISH", "Finish: " + FINISH);
+            //    rpt.SetParameterValue("DOORNUMBER", "Door Number: " + DOOR);
+            //    rpt.PrintToPrinter(1, false, 0, 0); //this works well for auto printing
+            //    insertINTO(DOOR);
+            //}
         }
     }
 }
