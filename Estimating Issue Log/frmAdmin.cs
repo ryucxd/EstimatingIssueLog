@@ -15,6 +15,12 @@ namespace Estimating_Issue_Log
     {
         public int Selected_ID { get; set; }
         public string USER { get; set; }
+
+        public string identifier { get; set; }
+        public string dateLogged { get; set; }
+        public string quoteNumber { get; set; }
+        public string issue { get; set; }
+        public string PersonResponsible { get; set; }
         public frmAdmin(int _ID, string _USER)
         {
             InitializeComponent();
@@ -58,6 +64,14 @@ namespace Estimating_Issue_Log
                         this.Text = "Issue ID: " + Selected_ID;
                     }
                     conn.Close();
+
+                    //make the properties fill here incase it needs to be emailed
+                    identifier = Convert.ToString(Selected_ID);
+                    dateLogged = txtLoggedDate.Text;
+                    quoteNumber = txtQuote.Text;
+                    issue = txtDescription.Text;
+                    PersonResponsible = personResponsible;
+
                 }
 
                 //checked by
@@ -290,6 +304,32 @@ namespace Estimating_Issue_Log
             //    rpt.PrintToPrinter(1, false, 0, 0); //this works well for auto printing
             //    insertINTO(DOOR);
             //}
+        }
+
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
+            {
+                //clear up temp table first
+                string sql = "DELETE FROM dbo.estimating_issue_log_temp";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                    //before opening the form, update the table to include only that entry
+                    sql = "INSERT INTO dbo.estimating_issue_log_temp (ID,date_logged,quote_number,issue,person_responsible) VALUES(" +
+                        "'" + identifier + "','" + dateLogged + "','" + quoteNumber + "','" + issue + "','" + PersonResponsible + "')";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+                frmEmail frm = new frmEmail();
+            frm.ShowDialog();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Estimating_Issue_Log
             applyFilter();
             fillCombo();
             locking(EngineerManager);
-           // format();
+            // format();
         }
 
         private void fillCombo()
@@ -105,7 +105,7 @@ namespace Estimating_Issue_Log
 
             //time to shut up and colour up
 
-            for (int i = 0; i < dataGridView1.Rows.Count;i++)
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (dataGridView1.Rows[i].Cells[10].Value.ToString() == "Resolved")
                 {
@@ -351,8 +351,8 @@ namespace Estimating_Issue_Log
             string USER = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString());
             if (EngineerManager == -1)
             {
-                frmAdmin frm = new frmAdmin(selectedID,USER);
-                frm.ShowDialog(); 
+                frmAdmin frm = new frmAdmin(selectedID, USER);
+                frm.ShowDialog();
             }
             else
             {
@@ -381,6 +381,39 @@ namespace Estimating_Issue_Log
             applyFilter();
         }
 
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            //insert into the temp table before emailing
+            string sql = "";
+            using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionString))
+            {
+                //first remove all entries
+                sql = "DELETE FROM dbo.estimating_issue_log_temp";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
 
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    sql = "INSERT INTO dbo.estimating_issue_log_temp (ID,date_logged,title,quote_number,issue,logged_by,checked_by,checked_date,discussed_with,discussed_date,action,resolved,person_responsible)" +
+                        "VALUES (" + dataGridView1.Rows[i].Cells[0].Value.ToString() + ",'" + dataGridView1.Rows[i].Cells[1].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[2].Value.ToString() + "'," +
+                        "" + dataGridView1.Rows[i].Cells[3].Value.ToString() + ",'" + dataGridView1.Rows[i].Cells[4].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[5].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[6].Value.ToString() + "'," +
+                        "'" + dataGridView1.Rows[i].Cells[7].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[8].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[9].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[10].Value.ToString() + "'," +
+                        "'" + dataGridView1.Rows[i].Cells[11].Value.ToString() + "','" + dataGridView1.Rows[i].Cells[12].Value.ToString() + "')";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+            }
+            //now open the form
+            frmEmail frm = new frmEmail();
+            frm.ShowDialog();
+        }
     }
 }

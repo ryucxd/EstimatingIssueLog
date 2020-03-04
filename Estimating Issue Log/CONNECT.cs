@@ -25,7 +25,7 @@ namespace Estimating_Issue_Log
                                "Trusted_Connection=no;" +
 
                                "database=user_info; " +
-
+            
                                "connection timeout=30";
 
 

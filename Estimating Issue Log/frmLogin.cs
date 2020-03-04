@@ -58,5 +58,10 @@ namespace Estimating_Issue_Log
             if (e.KeyCode == Keys.Enter)
                 btnLogin.PerformClick();
         }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

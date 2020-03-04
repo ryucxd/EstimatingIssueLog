@@ -47,6 +47,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtTitle = new System.Windows.Forms.TextBox();
+            this.btnEmail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,11 +263,23 @@
             this.txtTitle.TabIndex = 19;
             this.txtTitle.TextChanged += new System.EventHandler(this.txtTitle_TextChanged);
             // 
+            // btnEmail
+            // 
+            this.btnEmail.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmail.Location = new System.Drawing.Point(1140, 12);
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(134, 23);
+            this.btnEmail.TabIndex = 21;
+            this.btnEmail.Text = "Email Search Results";
+            this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 450);
+            this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnClear);
@@ -318,6 +331,7 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Button btnEmail;
     }
 }
 
