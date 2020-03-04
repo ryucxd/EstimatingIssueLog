@@ -107,7 +107,7 @@ namespace Estimating_Issue_Log
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[10].Value.ToString() == "Resolved")
+                if (dataGridView1.Rows[i].Cells[11].Value.ToString() == "Resolved")
                 {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightSeaGreen;
                 }

@@ -61,7 +61,7 @@ namespace Estimating_Issue_Log
                         conn.Open();
                         string temp = Convert.ToString(cmd.ExecuteScalar());
                         conn.Close();
-                        emails = emails + temp + ";";
+                        emails = emails + temp + ";"; //this works like a charm! for both singles AND two people¬
                     }
                 }    
             }
@@ -75,7 +75,6 @@ namespace Estimating_Issue_Log
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
-
                 }
             }
             MessageBox.Show("The email has been sent!");
