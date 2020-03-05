@@ -107,7 +107,7 @@ namespace Estimating_Issue_Log
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (dataGridView1.Rows[i].Cells[11].Value.ToString() == "Resolved")
+                if (dataGridView1.Rows[i].Cells[11].Value.ToString() == "Resolved") //remember to move this if there is a shift in columns
                 {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightSeaGreen;
                 }
@@ -359,7 +359,7 @@ namespace Estimating_Issue_Log
                 frmUser frm = new frmUser(selectedID);
                 frm.ShowDialog();
             }
-            refreshDGV();
+            applyFilter();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
