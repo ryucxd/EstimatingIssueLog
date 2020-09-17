@@ -159,6 +159,7 @@
             this.Name = "frmNewIssue";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Issue";
+            this.Load += new System.EventHandler(this.frmNewIssue_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

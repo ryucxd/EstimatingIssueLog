@@ -26,7 +26,7 @@ namespace Estimating_Issue_Log
 
         private void comboFill()
         {
-            string sql = "SELECT forename + ' ' + surname as [name] FROM dbo.[user] WHERE grouping = 5;";
+            string sql = "SELECT forename + ' ' + surname as [name] FROM dbo.[user] WHERE ( grouping = 5 OR grouping = 15) AND [current] = 1;";
             using (SqlConnection conn = new SqlConnection(CONNECT.ConnectionStringUser))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -93,6 +93,11 @@ namespace Estimating_Issue_Log
                     conn.Close();
                 }
             }
+        }
+
+        private void frmNewIssue_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -193,7 +193,8 @@ namespace Estimating_Issue_Log
                     "LEFT JOIN[user_info].[dbo].[user] e ON a.checked_by = e.id  WHERE ";
             else
                 sql = "SELECT a.[ID],[date_logged],a.title,[quote_number],[description],b.forename + ' ' + b.surname as [logged_by],e.forename + ' ' + e.surname as[checked_by],[checked_date],d.forename + ' ' + d.surname as [discussed_with]," +
-                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log] a " +
+                    "[discussed_date],[action_taken],CASE WHEN [resolved] = -1 THEN 'Resolved' ELSE ' ' END as [resolved],c.forename + ' ' + c.surname as person_responsible FROM[order_database].[dbo].[estimating_issue_log" +
+                    "] a " +
                     "LEFT JOIN[user_info].[dbo].[user] b ON a.logged_by = b.id " +
                     "LEFT JOIN[user_info].[dbo].[user] c ON a.person_responsible = c.id " +
                     "LEFT JOIN[user_info].[dbo].[user] d ON a.discussed_with = d.id " +
