@@ -65,6 +65,17 @@ namespace Estimating_Issue_Log
                     log_ID = Convert.ToInt32(cmd.ExecuteScalar());
                     conn.Close();
                 }
+
+                //execute the email here
+                using (SqlCommand cmd = new SqlCommand("usp_new_estimating_issue_log_email", conn))
+                {
+                    conn.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@log_id", SqlDbType.Int).Value = log_ID;
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+
             }
             MessageBox.Show("The issue has now been logged. Please attach any evidence to the folder that has just been opened.", "Logged!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             System.IO.Directory.CreateDirectory(@"\\designsvr1\Public\temp_test\PROJECT EIL\issues\" + log_ID);
